@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script defer src="client.js"></script>
+    <script defer src="http://localhost:8001/socket.io/socket.io.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg " style="background: ">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#" style="line-height: 1;">Chat <br> APP </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex flex-row  col-12 justify-content-end">
+                        <li class="nav-item px-1 ">
+                            <a class="nav-link text-white" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item px-1 ">
+                            <a class="nav-link text-white" aria-current="page" href="#">About us</a>
+                        </li>
+                        <li class="nav-item px-1 ">
+                            <a class="nav-link text-white" aria-current="page" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container bg-white d-block m-auto message-container"
+        style="height: 80dvh; max-width: 50%; background: linear-gradient(rgb(50, 83, 92), rgb(51, 31, 40)); overflow-y: auto; padding: px; margin-bottom: 20px;">
+
+        <div class="message right text-white">Pankaj: Hi</div>
+        <div class="message left text-white">Anu: Hello</div>
+    </div>
+    <div class="send text-center">
+        <form action="#" id="send-container" class="mt-1 d-flex align-items-center justify-content-center">
+            <input type="text" class=" mx-1 rounded-3" name="messageInp" id="messageInp" style="padding: 7px">
+            <button class="btn btn-info text-white" type="submit">Send</button>
+
+        </form>
+    </div>
+</body>
+
+</html>
