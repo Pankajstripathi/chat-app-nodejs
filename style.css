@@ -8,12 +8,14 @@ body {
   height: 100dvh;
 }
 .message {
-  background-color: rgb(87, 22, 22);
-  width: 24%;
+  background-color: rgb(175, 165, 165);
+  max-width: 30%;
+  min-width: 29%;
+  width: auto;
   padding: 10px;
   margin: 11px 2px;
   border-radius: 12px;
-  border: 1px solid grey;
+  border: 1px solid rgb(19, 19, 19);
 }
 .left {
   float: left;
