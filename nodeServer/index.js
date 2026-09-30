@@ -1,6 +1,6 @@
 const io = require('socket.io')(8001, {
   cors: {
-    origin: 'http://127.0.0.1:5500', // Ensure this matches your client origin
+    origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://127.0.0.1:3000', 'http://localhost:3000'],
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -10,14 +10,28 @@ const users = {};
 
 io.on('connection', (socket) => {
   socket.on('new-user-joined', (name) => {
-    // console.log('New user:', name);
-    users[socket.id] = name;
-    socket.broadcast.emit('user-joined', name);
+    const displayName = typeof name === 'string' ? name.trim() : '';
+    if (!displayName) {
+      socket.emit('join-error', 'Please enter a valid name to join the chat.');
+      return;
+    }
+
+    users[socket.id] = displayName;
+    socket.broadcast.emit('user-joined', displayName);
   });
 
   socket.on('send', (message) => {
     const name = users[socket.id];
-    socket.broadcast.emit('receive', { message, name });
+    if (!name) {
+      return;
+    }
+
+    const text = typeof message === 'string' ? message.trim() : '';
+    if (!text) {
+      return;
+    }
+
+    socket.broadcast.emit('receive', { message: text, name });
   });
 
   socket.on('disconnect', () => {
@@ -29,21 +43,4 @@ io.on('connection', (socket) => {
   });
 });
 
-const MongoClient = require('mongodb').MongoClient;
-
-const uri = 'mongodb://localhost:27017/your_database_name'; // Replace with your MongoDB URI
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-client.connect((err) => {
-  if (err) {
-    console.error('MongoDB connection error:', err);
-    return;
-  }
-
-  console.log('Connected to MongoDB');
-  const db = client.db(); // Get a reference to your database
-  // Now you can use the 'db' object to perform database operations
-});
+console.log('Chat server listening on http://localhost:8001');

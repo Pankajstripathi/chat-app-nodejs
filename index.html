@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Chat App</title>
-    <script defer src="http://localhost:8001/socket.io/socket.io.js"></script>
-    <script defer src="client.js"></script>
-
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="http://localhost:8001/socket.io/socket.io.js"></script>
+    <script defer src="client.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.socket.io/4.6.0/socket.io.min.js"
-        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
         crossorigin="anonymous"></script>
 
 </head>
@@ -26,7 +22,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg " style="background: ">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(50, 83, 92);">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="#" style="line-height: 1;">Chat <br> APP </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -51,7 +47,7 @@
         </nav>
     </header>
     <div class="container bg-white d-block m-auto rounded-3"
-        style="height: 80dvh; max-width: 50%; background: linear-gradient(rgb(50, 83, 92), rgb(51, 31, 40)); overflow-y: auto; padding: px; margin-bottom: 20px;">
+        style="height: 80dvh; max-width: 50%; background: linear-gradient(rgb(50, 83, 92), rgb(51, 31, 40)); overflow-y: auto; padding: 12px; margin-bottom: 20px;">
 
         <!-- <div class="message right text-white">Pankaj: Hi</div>
         <div class="message left text-white">Anu: Hello</div> -->

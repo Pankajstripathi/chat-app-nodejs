@@ -1,13 +1,12 @@
-// const socket = io('http://localhost:8000');
 const socket = io('http://localhost:8001', {
-  withCredentials: true, // Add this line
+  withCredentials: true,
 });
 
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInp');
 const messagecontainer = document.querySelector('.container');
 
-var audio = new Audio('ting.mp3');
+const audio = new Audio('ting.mp3');
 
 const append = (message, position) => {
   const messageElement = document.createElement('div');
@@ -15,29 +14,57 @@ const append = (message, position) => {
   messageElement.classList.add('message');
   messageElement.classList.add(position);
   messagecontainer.append(messageElement);
-  if (position == 'left') {
-    audio.play();
+  messagecontainer.scrollTop = messagecontainer.scrollHeight;
+  if (position === 'left') {
+    audio.play().catch(() => {});
   }
 };
+
+const promptForName = () => {
+  let name = '';
+  while (!name) {
+    const input = prompt('Enter your name to join chat');
+    if (input === null) {
+      return null;
+    }
+    name = input.trim();
+    if (!name) {
+      alert('Name cannot be empty.');
+    }
+  }
+  return name;
+};
+
+const name = promptForName();
+if (!name) {
+  append('You must enter a name to join the chat. Refresh the page to try again.', 'left');
+} else {
+  socket.emit('new-user-joined', name);
+}
+
+socket.on('join-error', (errorMessage) => {
+  append(errorMessage, 'left');
+});
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const message = messageInput.value;
-  append(`you: ${message}`, 'right');
+  const message = messageInput.value.trim();
+  if (!message) {
+    return;
+  }
+  append(`You: ${message}`, 'right');
   socket.emit('send', message);
   messageInput.value = '';
 });
-const name = prompt('Enter your name to join chat');
-socket.emit('new-user-joined', name);
 
-socket.on('user-joined', (name) => {
-  //   console.log(`User joined: ${name}`);
-  append(`${name} joined the chat`, 'right');
+socket.on('user-joined', (joinedName) => {
+  append(`${joinedName} joined the chat`, 'left');
 });
 
 socket.on('receive', (data) => {
   append(`${data.name}: ${data.message}`, 'left');
 });
 
-socket.on('user-left', (name) => {
-  append(`${name}: left the chat`, 'left');
+socket.on('user-left', (leftName) => {
+  append(`${leftName} left the chat`, 'left');
 });
