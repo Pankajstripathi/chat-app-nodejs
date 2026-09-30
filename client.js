@@ -1,4 +1,7 @@
-const socket = io('http://localhost:8001', {
+const SOCKET_PORT = 8001;
+const socketUrl = `${window.location.protocol}//${window.location.hostname}:${SOCKET_PORT}`;
+
+const socket = io(socketUrl, {
   withCredentials: true,
 });
 
