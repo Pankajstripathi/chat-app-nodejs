@@ -26,6 +26,8 @@ Real-time chat built with Socket.IO (Node.js server) and a static HTML/JS client
 
 4. Enter a display name when prompted to join the room.
 
+Open the client using the same host name you allow in the server CORS list (`localhost` or `127.0.0.1`). The browser loads Socket.IO from port `8001` on that same host.
+
 ## Project layout
 
 - `index.html`, `client.js`, `style.css` — browser client
